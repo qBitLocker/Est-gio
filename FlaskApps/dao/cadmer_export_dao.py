@@ -9,9 +9,13 @@ class ProductDataAccess():
         self.mysql = current_app.extensions['mysql']
     
     # Considerando o caso mais simples
-    def get_product_by_id (self, product_id: str):
+    def get_product_by_id (self, product_id:str):
+        print (product_id)
+
+        print ('Creating Cursor...')
         cursor = self.mysql.connection.cursor()
 
+        print ('Defininf the query...')
         # Define the query to fetch product details
         query = '''
             SELECT descricao, app_precovenda as venda

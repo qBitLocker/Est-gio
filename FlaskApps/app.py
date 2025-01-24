@@ -57,10 +57,10 @@ if __name__ == "__main__":
     pswd = CipherTools(path='security/secret', filename='pass.bin')
     user = CipherTools(path='security/secret', filename='user.bin')
 
-    app.config['MYSQL_HOST'] = ip.AES_dec()
-    app.config['MYSQL_USER'] = user.AES_dec()
-    app.config['MYSQL_PASSWORD'] = pswd.AES_dec()
-    app.config['MYSQL_DB'] = db.AES_dec()
+    app.config['MYSQL_HOST'] = ip.AES_dec().decode('utf-8')
+    app.config['MYSQL_USER'] = user.AES_dec().decode('utf-8')
+    app.config['MYSQL_PASSWORD'] = pswd.AES_dec().decode('utf-8')
+    app.config['MYSQL_DB'] = db.AES_dec().decode('utf-8')
 
     app.extensions['mysql'] = mysql = MySQL(app)
 

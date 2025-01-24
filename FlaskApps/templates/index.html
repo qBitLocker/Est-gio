@@ -5,16 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aba de Consultas</title>
     <!-- Linkando CSS: Flask Python -->
-    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static', filename='styles/style.css') }}">
-    
+    <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/style.css') }}"> -->
+    <!-- Linkando com o Bootstrap -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
 </head> 
 <body>
-    <h1>Consulta Preços</h1>
-    <form method="POST" action="query">
-        <label for="product_query">Passe o produto no leitor</label><br>
-        <input id="product_query" type="text" name="product_id" required><br>
-        <button class="btn btn-primary" type="submit">Consultar</button>
-    </form>
+    <div class="mb-3">
+        <h1>Consulta Preços</h1>
+        <form method="POST" action="query">
+            <label for="product_query">Passe o produto no leitor</label><br>
+            <input id="product_query" type="text" name="product_id" required><br>
+            <button class="btn btn-primary" type="submit">Consultar</button>
+        </form>
+    </div>
     <!-- Flask Template tokens -->
     {% if description %}
         <br>
@@ -24,6 +27,5 @@
     {% elif description is none %}
         <p>Produto não encontrado.</p>
     {% endif %}
-
 </body>
 </html>
