@@ -4,15 +4,8 @@ import MySQLdb
 # Implementando o CRUD (Create, Read, Update, Delete)
 class ProductDataAccess():
     def __init__ (self):
-        # Esta chave foi definida em app.py
-        '''
-            This typically means that you attempted to use functionality that needed
-            the current application. To solve this, set up an application context
-            with app.app_context(). See the documentation for more information.
-
-            read more at: https://flask.palletsprojects.com/en/stable/appcontext/
-        '''
-
+        # Não se esqueça de instanciar este objeto em app.py com app_context
+        # Não se esqueça de adicionar a chave 'mysql' no dicionário app.extensions, tudo dentro de app.py
         self.mysql = current_app.extensions['mysql']
     
     # Considerando o caso mais simples

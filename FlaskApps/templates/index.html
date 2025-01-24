@@ -6,21 +6,24 @@
     <title>Aba de Consultas</title>
     <!-- Linkando CSS: Flask Python -->
     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static', filename='styles/style.css') }}">
+    
 </head> 
 <body>
     <h1>Consulta Preços</h1>
-    <form method="POST" action="form">
+    <form method="POST" action="query">
         <label for="product_query">Passe o produto no leitor</label><br>
         <input id="product_query" type="text" name="product_id" required><br>
-        <button type="submit">Consultar</button>
+        <button class="btn btn-primary" type="submit">Consultar</button>
     </form>
     <!-- Flask Template tokens -->
     {% if description %}
+        <br>
         <h2>Detalhe do produto</h2>
         <p><strong>Descrição:</strong> {{ description }}</p>
         <p><strong>Venda:</strong> {{ price }}</p>
     {% elif description is none %}
         <p>Produto não encontrado.</p>
     {% endif %}
+
 </body>
 </html>
