@@ -1,31 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aba de Consultas</title>
     <!-- Linkando CSS: Flask Python -->
     <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/style.css') }}"> -->
+
+
     <!-- Linkando com o Bootstrap -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js')}}" ></script>
 </head> 
-<body>
-    <div class="mb-3">
-        <h1>Consulta Preços</h1>
-        <form method="POST" action="query">
-            <label for="product_query">Passe o produto no leitor</label><br>
-            <input id="product_query" type="text" name="product_id" required><br>
-            <button class="btn btn-primary" type="submit">Consultar</button>
+<body class="bg-light">
+    <div class="container mt-3">
+        <h2 class="text-center">Consulta Preços 2</h2>
+
+        <!-- was-validated CSS class -> Validation style -->
+        <form method="POST" action="query"  class="was-validated">
+            <!-- mb (margim bottom) ; mt (margim top) -->
+            <div class="mb-3 mt-3">
+                <!-- <label class="form-label" for="product_query">Passe o produto no leitor</label> -->
+                <label class="form-label" for="product_query">Passe o produto no leitor</label>
+                <input class="form-control" id="product_query" type="number" name="product_id" placeholder="Digite o ID do produto" required>
+                <div class="valid-feedback">Válido</div>
+                <div class="invalid-feedback">Por favor, preencher o campo acima ou leia o código de barras</div>
+            </div>
+            <div class="col text-center">
+                <button class="btn btn-primary" type="submit">Consultar</button>
+            </div>
         </form>
     </div>
-    <!-- Flask Template tokens -->
-    {% if description %}
-        <br>
-        <h2>Detalhe do produto</h2>
-        <p><strong>Descrição:</strong> {{ description }}</p>
-        <p><strong>Venda:</strong> {{ price }}</p>
-    {% elif description is none %}
-        <p>Produto não encontrado.</p>
-    {% endif %}
+    <div class="container mp-3 mt-3">
+        <!-- Flask Template tokens -->
+        {% if description %}
+            <div class="card bg-light text-dark">
+                <div class="card-header">Detalhes do Produto</div>
+                <div class="card-body">
+                    <p><strong>Descrição:</strong> {{ description }}</p>
+                    <p><strong>Preço:</strong> R$ {{ price }}</p>
+                </div> 
+                <!-- <div class="card-footer">Footer</div> -->
+            </div>
+        {% elif description is none %}
+            <p>Produto não encontrado.</p>
+        {% endif %}
+    </div>
+    <!-- 
+        {% if description %}
+            <h2>Detalhes do produto</h2>
+            <p><strong>Descrição:</strong> {{ description }}</p>
+            <p><strong>Preço:</strong>R$ {{ price }}</p>
+        {% elif description is none %}
+            <p>Produto não encontrado.</p>
+        {% endif %}
+    -->
 </body>
 </html>
