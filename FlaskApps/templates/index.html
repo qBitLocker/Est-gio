@@ -14,17 +14,17 @@
 </head> 
 <body class="bg-light">
     <div class="container mt-3">
-        <h2 class="text-center">Consulta Preços 2</h2>
+        <h2 class="text-center">Consulta Preços</h2>
 
         <!-- was-validated CSS class -> Validation style -->
         <form method="POST" action="query"  class="was-validated">
             <!-- mb (margim bottom) ; mt (margim top) -->
-            <div class="mb-3 mt-3">
+            <div class="mb-3 mt-3 input-group">
                 <!-- <label class="form-label" for="product_query">Passe o produto no leitor</label> -->
-                <label class="form-label" for="product_query">Passe o produto no leitor</label>
+                <label class="input-group-text" for="product_query">Consulta</label>
                 <input class="form-control" id="product_query" type="number" name="product_id" placeholder="Digite o ID do produto" required>
-                <div class="valid-feedback">Válido</div>
-                <div class="invalid-feedback">Por favor, preencher o campo acima ou leia o código de barras</div>
+                <div class="valid-feedback"><p>ID válido</p></div>
+                <div class="invalid-feedback"><p>Por favor, preencher o campo acima ou leia o código de barras</p></div>
             </div>
             <div class="col text-center">
                 <button class="btn btn-primary" type="submit">Consultar</button>
@@ -43,7 +43,14 @@
                 <!-- <div class="card-footer">Footer</div> -->
             </div>
         {% elif description is none %}
-            <p>Produto não encontrado.</p>
+            <!-- <p>Produto não encontrado.</p> -->
+            <div class="card bg-light text-dark">
+                <div class="card-header">Produto não encontrado</div>
+                <div class="card-body">
+                    <p>Por favor, verifique o código fornecido</p>
+                </div> 
+                <!-- <div class="card-footer">Footer</div> -->
+            </div>
         {% endif %}
     </div>
     <!-- 

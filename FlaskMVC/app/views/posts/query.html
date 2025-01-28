@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de pesquisa</title>
+</head>
+<body>
+    {% if result %}
+        <p>{{ result.description }}</p>
+        <p>{{ result.price }}</p>
+    {% else %}
+        <p>Produto não encontrado</p>
+    {% endif %}
+</body>
+</html>

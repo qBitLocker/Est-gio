@@ -1,4 +1,5 @@
 from flask import current_app
+from flask_mysqldb import MySQL
 import MySQLdb
 
 # Implementando o CRUD (Create, Read, Update, Delete)
@@ -8,6 +9,14 @@ class ProductDataAccess():
         # Não se esqueça de adicionar a chave 'mysql' no dicionário app.extensions, tudo dentro de app.py
         self.mysql = current_app.extensions['mysql']
     
+    # Tentar passar o objeto mysql como parâmetro
+    def __init__ (self, mysql: MySQL):
+        if isinstance(mysql, MySQL):
+            self.mysql = mysql
+        else:
+            self.mysql = None
+            raise Exception("O Objeto mysql fornecido em \'ProductDataAccess\' nao eh uma instancia da classe MySQL!")
+
     # Private method
     def __check_product_id__(self, product_id: str) -> bool:
         # Tentativa 1 - Tentar converte para um num inteiro
