@@ -6,12 +6,19 @@
     <title>Index HTML</title>
   </head>
   <body>
+    <!-- <form method="POST" action="/product"> -->
+    <form action="{{ url_for(posts.read) }}">
+      <label>Digite um id: </label>
+      <input type="number" name="product_id" required>
+      <button type="submit">consultar</button>
+    </form>
+<!-- 
     <h1>Hello, World</h1>
     {% for post in posts %}
       <dl>
         <dd>{{ post.description }}</dd>
         <dd>{{ post.price }}</dd>
       </dl>
-    {% endfor %}
+    {% endfor %} -->
   </body>
 </html>

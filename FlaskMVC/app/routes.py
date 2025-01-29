@@ -5,4 +5,5 @@ from mvc_flask import Router
 Router.get('/', 'home#index')
 
 # Para acessar a rota => controllers/{controller_name}_controller.py
-Router.get('/product', 'posts#show')
+# Router.get('/product', 'posts#show')
+Router.post('/product', 'posts#show')

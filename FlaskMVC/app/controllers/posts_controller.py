@@ -1,9 +1,10 @@
 from flask import render_template
 from app.models.post import Post
 
-class PostsController ():
+class PostsController():
     def show (self):
-        result = Post.query.get(1)
-        print (type(result))
+        print ('Processando requisicao POST')
+        #print (product_id)
+        #result = Post.query.get(int(product_id))
 
-        return render_template('posts/query.html', result=result)
+        return render_template('posts/query.html', result=None)
