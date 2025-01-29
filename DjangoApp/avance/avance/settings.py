@@ -77,10 +77,26 @@ WSGI_APPLICATION = 'avance.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    # Utilizar sqllite3 como default
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # }
+
+    'default': {  
+        'ENGINE': 'django.db.backends.mysql',  
+        # Banco de daods
+        'NAME': 'retguarda',  
+        'USER': 'consulta',  
+        'PASSWORD': 'consulta3722',  
+        'HOST': '192.168.1.60',  
+        'PORT': '3306',  
+        'OPTIONS': {
+            # usado para lidar com valores inválidos ou ausentes
+            # # armazenados no banco de dados por instruções INSERT e UPDATE.
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"  
+        }  
+    }  
 }
 
 

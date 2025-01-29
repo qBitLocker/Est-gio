@@ -1,0 +1,12 @@
+{% if products %}
+    <ul>
+    {% for product in products %}
+        <li>Id: {{ product.id }}</li>
+        <li>Descrição: {{ product.description }}</li>
+        <li>Preço: R$ {{ product.price }}</li>
+        <br>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
