@@ -1,5 +1,5 @@
 # Ignorar todos os arquivos dentro de secret
-FlaskApps/security/secret/
+app/FlaskApps/security/secret/
 
 # Ignorar o projeto realizado no framework flask mvc
 FlaskMVC/

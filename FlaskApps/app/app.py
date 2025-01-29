@@ -7,8 +7,6 @@ from blueprint import blueprint
 from dao.cadmer_export_dao import ProductDataAccess
 from security.cipher_algo import CipherTools
 
-from routes.query_handler import query
-
 #app = Flask(__name__)
 app = Flask(
     import_name=__name__,
@@ -36,8 +34,6 @@ def query_handler():
             return render_template('index.html', description=None)
 
 if __name__ == "__main__":
-    app.register_blueprint(query)
-
     db   = CipherTools(path='security/secret', filename='db.bin')
     pswd = CipherTools(path='security/secret', filename='pass.bin')
     user = CipherTools(path='security/secret', filename='user.bin')
