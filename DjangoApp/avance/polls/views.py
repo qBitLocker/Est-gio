@@ -1,16 +1,34 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse, Http404
 from django.template import loader
 
-from .models import Product
+from .models import Product, Question, Choice
 
 # Create your views here.
 def index(request):
-    return HttpResponse ("<h1>Hello, World</h1>")
+    # Ultimas 5 publicacoes
+    latest_question_list = Question.objects.order_by("-pub_date")[:5]
+    output = ", ".join([q.question_text for q in latest_question_list])
+    return HttpResponse(output)
+
+    # Renderizar em template?
+    ''' context = {"latest_question_list": latest_question_list}
+    return render(request, "polls/index.html", context)'''
 
 # Novos views -> Adicionar em polls/urls.py
 def detail(request, id):
-    return HttpResponse("You're looking at question %s." % id)
+    '''try:
+        question = Question.objects.get(pk=id)
+    except (Question.DoesNotExist):
+        raise Http404("Question {} does not exist".format(id))
+    return render(request, "polls/detail.html", {
+        "question": question
+    })'''
+    question = get_object_or_404(Question, pk=id)
+    return render(request, "polls/detail.html", {
+        "question":question
+    })
+
 
 # Pesquisar como /polls{id}
 def results(request, id):
@@ -33,12 +51,16 @@ def fetch (request):
     return HttpResponse(template.render(context, request))
 
 def service(request):
-    
     if request.method == "POST":
-        # return HttpResponse('<h1>Processing POST request</h1>')
-        context = {
-            'is_post': True
-        }
+        codbar = request.POST['codbar']
+        context = { 'is_post': True }
+        try:
+            # pk = primary key
+            product = Product.objects.get(id=codbar)
+            context['product'] = product
+        except (KeyError, Product.DoesNotExist):
+            context['product'] = None
+        
         return render(request, 'polls/detail.html', context)
     elif request.method == "GET":
         #return HttpResponse('<h1>Processing GET request</h1>')
