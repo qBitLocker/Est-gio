@@ -31,3 +31,17 @@ def fetch (request):
     }
 
     return HttpResponse(template.render(context, request))
+
+def service(request):
+    
+    if request.method == "POST":
+        # return HttpResponse('<h1>Processing POST request</h1>')
+        context = {
+            'is_post': True
+        }
+        return render(request, 'polls/detail.html', context)
+    elif request.method == "GET":
+        #return HttpResponse('<h1>Processing GET request</h1>')
+        return render(request, 'polls/detail.html')
+    else:
+        return HttpResponse('<h1>Invalid Request</h1>')

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formularion simples em Django</title>
+</head>
+<body>
+    <h1>Consulta Preços</h1>
+    <form method="POST" action="service">
+        <!-- Setando o token CSRF (Cross Site Request Forgery) -->
+        {% csrf_token %}
+        <label for="codbar">Passe o produto no leitor: </label>
+        <input id="codbar" name="codbar" required>
+        <button type="submit">consultar</button>
+        {% if is_post %}
+        <p>Processamento de requisição Post foi um sucesso!</p>
+        {% endif %}
+    </form>
+</body>
+</html>

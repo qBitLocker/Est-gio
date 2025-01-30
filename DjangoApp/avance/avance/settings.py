@@ -86,10 +86,10 @@ DATABASES = {
     'default': {  
         'ENGINE': 'django.db.backends.mysql',  
         # Banco de daods
-        'NAME': 'retguarda',  
-        'USER': 'consulta',  
-        'PASSWORD': 'consulta3722',  
-        'HOST': '192.168.1.60',  
+        'NAME': 'test',  
+        'USER': 'root',  
+        'PASSWORD': 'avance',  
+        'HOST': 'localhost',  
         'PORT': '3306',  
         'OPTIONS': {
             # usado para lidar com valores inválidos ou ausentes

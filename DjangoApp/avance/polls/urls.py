@@ -12,5 +12,7 @@ urlpatterns = [
     # ex: /polls/5/vote/
     path("<int:id>/vote/", views.vote, name="vote"),
 
-    path("/fetch", views.fetch, name="fetch")
+    path("/fetch", views.fetch, name="fetch"),
+
+    path("/service", views.service, name='Service')
 ]

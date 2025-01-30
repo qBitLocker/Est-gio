@@ -15,3 +15,9 @@ class Product(models.Model):
 
     def __str__ (self):
         return "Descr: {}\nPrice: R$ {}".format(self.description, self.price)
+    
+
+'''class User(models.Model):
+    username = models.CharField(max_length=200)
+    password = models.CharField(max_length=200)'''
+    
