@@ -5,9 +5,9 @@ import datetime
 # Passos
 # Altere models (in models.py).
 
-# Rode python manage.py makemigrations para criar a migração para as alerações
+# Rode "python manage.py makemigrations" para criar a migração para as alerações
 
-# Rode python manage.py migrate para aplicar as algerações no banco de dados
+# Rode "python manage.py migrate" para aplicar as algerações no banco de dados
 
 # Create your models here.
 class Product(models.Model):
@@ -36,3 +36,11 @@ class Choice(models.Model):
 
     def __str__(self):
         return self.choice_text
+    
+class User(models.Model):
+    username = models.CharField(max_length=200)
+    #password = models.CharField(max_length=200)
+    password = models.BinaryField(max_length=200)
+
+    def __str__ (self):
+        return "username {} password {}".format(self.username, self.password)

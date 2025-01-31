@@ -1,5 +1,9 @@
 # Ignorar todos os arquivos dentro de secret
 /FlaskApps/app/security/secret/
-
+/DjangoApp/avance/security/secret
 # Ignorar o projeto realizado no framework flask mvc
 FlaskMVC/
+
+# Env
+.web
+__pycache__/

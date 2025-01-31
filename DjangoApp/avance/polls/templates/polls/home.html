@@ -1,0 +1,5 @@
+{% csrf_token %}
+
+{% if login_status %}
+<h1>{{ login_status }}</h1>
+{% endif %}
