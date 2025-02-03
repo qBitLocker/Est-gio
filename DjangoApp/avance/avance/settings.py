@@ -84,20 +84,38 @@ DATABASES = {
     # }
 
     'default': {  
-        'ENGINE': 'django.db.backends.mysql',  
-        # Banco de daods
+       'ENGINE': 'django.db.backends.mysql',  
+        # Banco de dados
         'NAME': 'test',  
         'USER': 'root',  
         'PASSWORD': 'avance',  
         'HOST': 'localhost',  
         'PORT': '3306',  
+
         'OPTIONS': {
             # usado para lidar com valores inválidos ou ausentes
             # # armazenados no banco de dados por instruções INSERT e UPDATE.
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"  
         }  
-    }  
+
+    }
+
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'retguarda',
+    #     'USER': 'consulta',
+    #     'PASSWORD': 'consulta3722',
+    #     'HOST': '192.168.1.60',
+    #     'PORT': '3306',
+
+    #     'OPTIONS': {
+    #         'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+    #     }
+    # }
 }
+
+
+
 
 
 # Password validation

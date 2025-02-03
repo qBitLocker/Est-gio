@@ -5,6 +5,8 @@ from django.db.models import F
 from django.urls import reverse
 
 from .models import Product, Question, Choice, User
+from security.cipher_algo import CipherTools
+
 
 # Create your views here.
 def index(request):
@@ -61,7 +63,7 @@ def vote(request, question_id):
         # user hits the Back button.
         return HttpResponseRedirect(reverse("polls:results", args=(question.id,)))
     
-########################## Interface fora do turotial #######################################
+########################## Interface fora do tutorial #######################################
 
 def fetch (request):
     # Adquire todos os objetos e retorna para o usuário
@@ -93,8 +95,34 @@ def service(request):
     else:
         return HttpResponse('<h1>Invalid Request</h1>')
     
-
 ####################################### tela de login ##############################################
+def signup (request):
+    if request.method == "POST":
+        # Captura dos campos do formulário
+        username = request.POST['username']
+        password = request.POST['password']
+
+        # Criação de um objeto CipherTools
+        cipher = CipherTools()
+        hashed = cipher.Bcrypt_enc(password.encode())
+
+        # Criação do modelo de usuário 
+        user = User(username=username, password=hashed)
+
+        # Inserção do usuário no banco de dados
+        user.save()
+
+        # Redirecionamento para a página de login
+        return render(request, "polls/login.html", {
+            "success": True,
+            "message": "Usuário cadastrado com sucesso"
+        })
+
+    elif request.method == "GET":
+        return render(request, "polls/cadastro.html")
+
+
+
 def login(request):
     if request.method == "GET":
         return render(request, "polls/login.html")
@@ -106,7 +134,8 @@ def home(request):
 
         try:
             user = User.objects.filter(username=username)
-            if user[0].password == password:
+            cipher = CipherTools()
+            if cipher.Bcrypt_match(password.encode(), user[0].password):
                 return render(request, "polls/home.html", {
                     "login_status": "Sucess"
                 })

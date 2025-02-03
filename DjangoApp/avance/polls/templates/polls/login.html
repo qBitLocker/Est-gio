@@ -17,10 +17,14 @@
 
             <button type="submit">acessar</button>
         </form>
-
+        {% if success %}
+            <p style="color: green">{{ message }}</p>
+        {% endif %}
+        
         {% if error %}
             <p style="color: red">{{ message }}</p>
         {% endif %}
+
     </fieldset>
 </body>
 </html>
