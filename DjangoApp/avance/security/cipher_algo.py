@@ -26,7 +26,6 @@ class CipherTools():
         self.target = os.path.join(self.path, self.filename)
         self.gen_salt = 12
 
-    
     # Verifica se o atributo é uma string e não nula
     def __check_str__(self, attribute: str) -> bool:
         if not attribute:
@@ -55,10 +54,8 @@ class CipherTools():
                 "CipherTools.get_path\n" + \
                 "CipherTools.get_target\n"
                 
-
     # Leia as informações contidas no target da criptografia AES
     def read_pieces(self, key: bool=True, iv: bool=True, ciphertext: bool=True, seq: str="kic") -> tuple:
-
         key_, iv_, ciphertext_ = None, None, None
         read = [False, False, False]
 
@@ -125,7 +122,6 @@ class CipherTools():
         if not self.__check_str__(filename):
             raise ValueError("[ERROR] Tipo de dado inválido para filename")
 
-
         default_filename = 'cipher_file.bin'
         leaf = filename.split('\\')[-1].split('/')[-1]
 
@@ -137,7 +133,6 @@ class CipherTools():
     def set_path(self, path: str):
         if not self.__check_str__(path):
             raise ValueError("[ERROR] Tipo de dado inválido para path")
-
 
         default_path = os.path.join(os.getcwd(), 'security', 'secret')
         self.path = default_path if not path else path if os.path.exists(path) else default_path

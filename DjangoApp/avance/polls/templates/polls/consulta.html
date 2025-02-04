@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formularion simples em Django</title>
+    
+    <!-- Linkando o bootstrap: django-bootstrap5 -->
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Avance</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'polls:cadastro' %}">Cadastro</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'polls:login' %}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'polls:consulta' %}">Consulta</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+
+    <div class="container mt-3">
+        <h2 class="text-center">Consulta Preços</h2>
+
+        <!-- was-validated CSS class -> Validation style -->
+        <form method="POST" action="{% url 'polls:consulta' %}"  class="was-validated">
+            <!-- mb (margim bottom) ; mt (margim top) -->
+            {% csrf_token %}
+            <div class="mb-3 mt-3 input-group">
+                <!-- <label class="form-label" for="product_query">Passe o produto no leitor</label> -->
+                <label class="input-group-text" for="product_query">Consulta</label>
+                <input class="form-control" id="product_query" type="number" name="product_id" placeholder="Digite o ID do produto" required>
+                <div class="valid-feedback"><p>ID válido</p></div>
+                <div class="invalid-feedback"><p>Por favor, preencher o campo acima ou leia o código de barras</p></div>
+            </div>
+            <div class="col text-center">
+                <button class="btn btn-primary" type="submit">Consultar</button>
+            </div>
+        </form>
+    </div>
+    <div class="container mp-3 mt-3">
+        <!-- Flask Template tokens -->
+        {% if product %}
+            <div class="card bg-light text-dark">
+                <div class="card-header">Detalhes do Produto</div>
+                <div class="card-body">
+
+                    <p><strong>Descrição:</strong> {{ product.description }}</p>
+                    <p><strong>Preço:</strong> R$ {{ product.price }}</p>
+                </div> 
+                <!-- <div class="card-footer">Footer</div> -->
+            </div>
+        {% elif product is none %}
+            <!-- <p>Produto não encontrado.</p> -->
+            <div class="card bg-light text-dark">
+                <div class="card-header">Produto não encontrado</div>
+                <div class="card-body">
+                    <p>Por favor, verifique o código fornecido</p>
+                </div> 
+                <!-- <div class="card-footer">Footer</div> -->
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

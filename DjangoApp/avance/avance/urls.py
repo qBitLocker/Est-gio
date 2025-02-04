@@ -24,8 +24,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     
     # Configurando o URLconf global no projeto mysite para incluir o URLconf definido em polls.urls
-    path("polls", include("polls.urls")),
+    path("polls/", include("polls.urls")),
 
     # Registrando nova rota utilizando "test" como root
-    path("test", include('test.urls'))
+    path("test/", include('test.urls'))
 ]
